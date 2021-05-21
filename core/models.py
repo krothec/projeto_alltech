@@ -21,42 +21,41 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
-class Estado(Base):
-    nome_estado = models.CharField('Nome estado', max_length=100)
-    sigla_estado = models.CharField('Sigla', max_length=2)
+# class Estado(Base):
+#     nome_estado = models.CharField('Nome estado', max_length=100)
+#     sigla_estado = models.CharField('Sigla', max_length=2)
+#
+#     class Meta:
+#         verbose_name = 'Estado'
+#         verbose_name_plural = 'Estados'
+#
+#     def __str__(self):
+#         return self.nome_estado
+#
+# class Cidade(Base):
+#     nome_cidade = models.CharField('Nome Cidade', max_length=100)
+#     cd_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+#
+#     class Meta:
+#         verbose_name = 'Cidade'
+#         verbose_name_plural = 'Cidades'
+#
+#     def __str__(self):
+#         return self.nome_cidade
 
-    class Meta:
-        verbose_name = 'Estado'
-        verbose_name_plural = 'Estados'
-
-    def __str__(self):
-        return self.nome_estado
-
-class Cidade(Base):
-    nome_cidade = models.CharField('Nome Cidade', max_length=100)
-    cd_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'Cidade'
-        verbose_name_plural = 'Cidades'
-
-    def __str__(self):
-        return self.nome_cidade
-
-class Regional(Base):
-    nome_regional = models.CharField('Nome regional', max_length=100)
-    cd_cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'Regional'
-        verbose_name_plural = 'Regionais'
-
-    def __str__(self):
-        return self.nome_regional
+# class Regional(Base):
+#     nome_regional = models.CharField('Nome regional', max_length=100)
+#
+#     class Meta:
+#         verbose_name = 'Regional'
+#         verbose_name_plural = 'Regionais'
+#
+#     def __str__(self):
+#         return self.nome_regional
 
 
 class TipoAtividade(Base):
-    tipo_atividade = models.CharField('Tipo Atividade', max_length=100)
+    descricao_atividade = models.CharField('Tipo Atividade', max_length=100)
     pontos = models.IntegerField('Pontuação', blank=True, null=True)
 
     class Meta:
@@ -67,7 +66,6 @@ class TipoAtividade(Base):
 
 
 class Publicacao(Base):
-    cd_tipo_atividade = models.ForeignKey(TipoAtividade, on_delete=models.CASCADE)
     localizacao = models.FloatField('Localização', max_length=10000)
     data_atividade = models.DateField('Data Atividade', auto_now_add=True)
     descricao = models.TextField('Descrição', max_length=500)
@@ -81,10 +79,8 @@ class Publicacao(Base):
 
 
 class Atividade(Base):
-    nome_atividade = models.CharField('Nome Atividade', max_length=100, default='NULL')
-    descricao_atividade = models.TextField('Descrição Atividade', max_length=200)
     cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
-    descricao_atividade = models.ForeignKey(TipoAtividade, on_delete=models.CASCADE)
+    cd_tipo_atividade = models.ForeignKey(TipoAtividade, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Atividade'
@@ -142,7 +138,6 @@ class Premio(Base):
 
 class Interacao(Base):
     cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
-    interacao = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Interação'

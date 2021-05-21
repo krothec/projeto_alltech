@@ -1,32 +1,31 @@
 from django.contrib import admin
 
-from .models import Atividade, Estado, Cidade,\
-    Regional, TipoAtividade, Publicacao, Midia, Ranking, \
+from .models import Atividade, TipoAtividade, Publicacao, Midia, Ranking, \
     Comentario, Premio, Interacao
 
 @admin.register(Atividade)
 class AtividadeAdmin(admin.ModelAdmin):
-    list_display = ('nome_atividade', 'descricao_atividade')
+    list_display = ('cd_publicacao', 'cd_tipo_atividade')
 
-@admin.register(Estado)
-class EstadoAdmin(admin.ModelAdmin):
-    list_display = ('nome_estado', 'sigla_estado')
+# @admin.register(Estado)
+# class EstadoAdmin(admin.ModelAdmin):
+#     list_display = ('nome_estado', 'sigla_estado')
 
-@admin.register(Cidade)
-class CidadeAdmin(admin.ModelAdmin):
-    list_display = ('nome_cidade', 'cd_estado')
+# @admin.register(Cidade)
+# class CidadeAdmin(admin.ModelAdmin):
+#     list_display = ('nome_cidade', 'cd_estado')
 
-@admin.register(Regional)
-class RegionalAdmin(admin.ModelAdmin):
-    list_display = ('nome_regional', 'cd_cidade')
+# @admin.register(Regional)
+# class RegionalAdmin(admin.ModelAdmin):
+#     display = ('nome_regional')
 
 @admin.register(TipoAtividade)
 class TipoAtividadeAdmin(admin.ModelAdmin):
-    list_display = ('tipo_atividade', 'pontos')
+    list_display = ('descricao_atividade', 'pontos')
 
 @admin.register(Publicacao)
 class PublicacaoAdmin(admin.ModelAdmin):
-    list_display = ('descricao', 'cd_tipo_atividade')
+    display = ('descricao')
 
 @admin.register(Midia)
 class MidiaAdmin(admin.ModelAdmin):
@@ -46,5 +45,5 @@ class PremioAdmin(admin.ModelAdmin):
 
 @admin.register(Interacao)
 class Interacaodmin(admin.ModelAdmin):
-    list_display = ('cd_publicacao', 'interacao')
+    display = ('cd_publicacao', 'ativo')
 

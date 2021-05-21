@@ -2,11 +2,10 @@ from django.shortcuts import render
 from rest_framework import generics, filters
 from django import forms
 
-from .models import Estado, Cidade, Regional, Atividade, TipoAtividade, Publicacao, Midia, \
+from .models import  Atividade, TipoAtividade, Publicacao, Midia, \
     Ranking, Comentario, Premio, Interacao
 
-from .serializers import AtividadeSerializers, CidadeSerializers, EstadoSerializers, \
-    RegionalSerializers, TipoAtividadeSerializers, PublicacaoSerializers, \
+from .serializers import AtividadeSerializers, TipoAtividadeSerializers, PublicacaoSerializers, \
     MidiaSerializers, RankingSerializers, ComentarioSerializers, \
     PremioSerializers, InteracaoSerializers
 
@@ -19,32 +18,32 @@ class DetailAtividade(generics.RetrieveUpdateDestroyAPIView):
     queryset = Atividade.objects.filter(ativo=True)
     serializer_class = AtividadeSerializers
 
-class CidadeAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter, )
-    queryset = Cidade.objects.filter(ativo=True)
-    serializer_class = CidadeSerializers
+# class CidadeAPIViews(generics.ListCreateAPIView):
+#     filter_backends = (filters.SearchFilter, )
+#     queryset = Cidade.objects.filter(ativo=True)
+#     serializer_class = CidadeSerializers
+#
+# class DetailCidade(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Cidade.objects.filter(ativo=True)
+#     serializer_class = CidadeSerializers
+#
+# class EstadoAPIViews(generics.ListCreateAPIView):
+#     filter_backends = (filters.SearchFilter, )
+#     queryset = Estado.objects.filter(ativo=True)
+#     serializer_class = EstadoSerializers
+#
+# class DetailEstado(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Estado.objects.filter(ativo=True)
+#     serializer_class = EstadoSerializers
+#
+# class RegionalAPIViews(generics.ListCreateAPIView):
+#     filter_backends = (filters.SearchFilter, )
+#     queryset = Regional.objects.filter(ativo=True)
+#     serializer_class = RegionalSerializers
 
-class DetailCidade(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Cidade.objects.filter(ativo=True)
-    serializer_class = CidadeSerializers
-
-class EstadoAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter, )
-    queryset = Estado.objects.filter(ativo=True)
-    serializer_class = EstadoSerializers
-
-class DetailEstado(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Estado.objects.filter(ativo=True)
-    serializer_class = EstadoSerializers
-
-class RegionalAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter, )
-    queryset = Regional.objects.filter(ativo=True)
-    serializer_class = RegionalSerializers
-
-class DetailRegional(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Regional.objects.filter(ativo=True)
-    serializer_class = RegionalSerializers
+# class DetailRegional(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Regional.objects.filter(ativo=True)
+#     serializer_class = RegionalSerializers
 
 class TipoAtividadeAPIViews(generics.ListCreateAPIView):
     filter_backends = (filters.SearchFilter, )

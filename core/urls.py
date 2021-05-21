@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import AtividadeAPIView, CidadeAPIViews, EstadoAPIViews,\
-    RegionalAPIViews, TipoAtividadeAPIViews, PublicacaoAPIViews, MidiaAPIViews, \
-    DetailAtividade, DetailCidade, DetailEstado, DetailRegional, DetailTipoAtividade, \
+from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, MidiaAPIViews, \
+    DetailAtividade,  DetailTipoAtividade, \
     DetailPublicacao, DetailMidia, RankingAPIViews, DetailRanking, ComentarioAPIViews,\
     DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao
 
@@ -10,14 +9,14 @@ urlpatterns = [
     path('atividades', AtividadeAPIView.as_view()),
     path('atividades/<int:pk>', DetailAtividade.as_view()),
 
-    path('cidade', CidadeAPIViews.as_view()),
-    path('cidade/<int:pk>', DetailCidade.as_view()),
+    # path('cidade', CidadeAPIViews.as_view()),
+    # path('cidade/<int:pk>', DetailCidade.as_view()),
 
-    path('estado', EstadoAPIViews.as_view()),
-    path('estado/<int:pk>', DetailEstado.as_view()),
+    # path('estado', EstadoAPIViews.as_view()),
+    # path('estado/<int:pk>', DetailEstado.as_view()),
 
-    path('regional', RegionalAPIViews.as_view()),
-    path('regional/<int:pk>', DetailRegional.as_view()),
+    # path('regional', RegionalAPIViews.as_view()),
+    # path('regional/<int:pk>', DetailRegional.as_view()),
 
     path('tipoAtividade', TipoAtividadeAPIViews.as_view()),
     path('tipoAtividade/<int:pk>', DetailTipoAtividade.as_view()),

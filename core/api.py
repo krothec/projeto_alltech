@@ -1,9 +1,8 @@
 from rest_framework import viewsets
 
-from .models import Atividade, Cidade, Estado, Regional, TipoAtividade, \
+from .models import Atividade, TipoAtividade, \
     Publicacao, Midia, Ranking, Comentario, Premio, Interacao
-from .serializers import AtividadeSerializers, CidadeSerializers, \
-    EstadoSerializers, RegionalSerializers, TipoAtividadeSerializers, \
+from .serializers import AtividadeSerializers, TipoAtividadeSerializers, \
     PublicacaoSerializers, MidiaSerializers, RankingSerializers, \
     ComentarioSerializers, PremioSerializers, InteracaoSerializers
 
@@ -13,19 +12,19 @@ class AtividadeViewSet(viewsets.ModelViewSet):
     serializer_class = AtividadeSerializers
 
 
-class CidadeViewSet(viewsets.ModelViewSet):
-    queryset = Cidade.objects.all()
-    serializer_class = CidadeSerializers
-
-
-class EstadoViewSet(viewsets.ModelViewSet):
-    queryset = Estado.objects.all()
-    serializer_class = EstadoSerializers
-
-
-class RegionalViewSet(viewsets.ModelViewSet):
-    queryset = Regional.objects.all()
-    serializer_class = RegionalSerializers
+# class CidadeViewSet(viewsets.ModelViewSet):
+#     queryset = Cidade.objects.all()
+#     serializer_class = CidadeSerializers
+#
+#
+# class EstadoViewSet(viewsets.ModelViewSet):
+#     queryset = Estado.objects.all()
+#     serializer_class = EstadoSerializers
+#
+#
+# class RegionalViewSet(viewsets.ModelViewSet):
+#     queryset = Regional.objects.all()
+#     serializer_class = RegionalSerializers
 
 class TipoAtividadeViewSet(viewsets.ModelViewSet):
     queryset = TipoAtividade.objects.all()

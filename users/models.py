@@ -36,16 +36,18 @@ class CustomAccountManager(BaseUserManager):
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
 
-    email = models.EmailField(_('email address'), unique=True)
-    user_name = models.CharField(max_length=150, unique=True)
-    first_name = models.CharField(max_length=150, blank=True)
-    start_date = models.DateTimeField(default=timezone.now)
+    email = models.EmailField(_('e-mail'), unique=True)
+    user_name = models.CharField('Usuário', max_length=150, unique=True)
+    first_name = models.CharField('Primeiro nome', max_length=150, blank=True)
+    last_name = models.CharField('Sobrenome', max_length=150, blank=True)
+    start_date = models.DateTimeField('Data início', default=timezone.now)
+    end_date = models.DateField('Data final', null=True, default=None)
     about = models.TextField(_(
-        'about'), max_length=500, blank=True)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
-    cd_cidade = models.ForeignKey('core.Cidade', on_delete=models.CASCADE)
-
+        'Biografia'), max_length=500, blank=True)
+    is_staff = models.BooleanField('Admin', default=False)
+    is_active = models.BooleanField('Ativo', default=False)
+    photo = models.CharField('Foto de perfil', max_length=150, null=True)
+    regional = models.CharField('Nome regional', max_length=100, blank=True)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'user_name'
