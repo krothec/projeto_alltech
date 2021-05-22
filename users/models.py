@@ -41,7 +41,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField('Primeiro nome', max_length=150, blank=True)
     last_name = models.CharField('Sobrenome', max_length=150, blank=True)
     start_date = models.DateTimeField('Data início', default=timezone.now)
-    end_date = models.DateField('Data final', null=True, default=None)
     about = models.TextField(_(
         'Biografia'), max_length=500, blank=True)
     is_staff = models.BooleanField('Admin', default=False)
