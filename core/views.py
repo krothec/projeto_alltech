@@ -3,11 +3,11 @@ from rest_framework import generics, filters
 from django import forms
 
 from .models import  Atividade, TipoAtividade, Publicacao, Midia, \
-    Ranking, Comentario, Premio, Interacao
+    Ranking, Comentario, Premio, Interacao, Regional
 
 from .serializers import AtividadeSerializers, TipoAtividadeSerializers, PublicacaoSerializers, \
     MidiaSerializers, RankingSerializers, ComentarioSerializers, \
-    PremioSerializers, InteracaoSerializers
+    PremioSerializers, InteracaoSerializers, RegionalSerializers
 
 class AtividadeAPIView(generics.ListCreateAPIView):
     filter_backends = (filters.SearchFilter, )
@@ -36,14 +36,14 @@ class DetailAtividade(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Estado.objects.filter(ativo=True)
 #     serializer_class = EstadoSerializers
 #
-# class RegionalAPIViews(generics.ListCreateAPIView):
-#     filter_backends = (filters.SearchFilter, )
-#     queryset = Regional.objects.filter(ativo=True)
-#     serializer_class = RegionalSerializers
+class RegionalAPIViews(generics.ListCreateAPIView):
+    filter_backends = (filters.SearchFilter, )
+    queryset = Regional.objects.filter(ativo=True)
+    serializer_class = RegionalSerializers
 
-# class DetailRegional(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Regional.objects.filter(ativo=True)
-#     serializer_class = RegionalSerializers
+class DetailRegional(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Regional.objects.filter(ativo=True)
+    serializer_class = RegionalSerializers
 
 class TipoAtividadeAPIViews(generics.ListCreateAPIView):
     filter_backends = (filters.SearchFilter, )

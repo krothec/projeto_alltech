@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, MidiaAPIViews, \
-    DetailAtividade,  DetailTipoAtividade, \
+    DetailAtividade,  DetailTipoAtividade, RegionalAPIViews, DetailRegional, \
     DetailPublicacao, DetailMidia, RankingAPIViews, DetailRanking, ComentarioAPIViews,\
     DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao
 
@@ -15,8 +15,8 @@ urlpatterns = [
     # path('estado', EstadoAPIViews.as_view()),
     # path('estado/<int:pk>', DetailEstado.as_view()),
 
-    # path('regional', RegionalAPIViews.as_view()),
-    # path('regional/<int:pk>', DetailRegional.as_view()),
+    path('regional', RegionalAPIViews.as_view()),
+    path('regional/<int:pk>', DetailRegional.as_view()),
 
     path('tipoAtividade', TipoAtividadeAPIViews.as_view()),
     path('tipoAtividade/<int:pk>', DetailTipoAtividade.as_view()),

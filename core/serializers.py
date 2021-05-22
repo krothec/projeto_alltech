@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Atividade,  \
+from .models import Atividade,  Regional, \
     TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao
 
 
@@ -22,10 +22,10 @@ class AtividadeSerializers(serializers.ModelSerializer):
 #         fields = "__all__"
 
 
-# class RegionalSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = Regional
-#         fields = "__all__"
+class RegionalSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Regional
+        fields = "__all__"
 
 
 class TipoAtividadeSerializers(serializers.ModelSerializer):

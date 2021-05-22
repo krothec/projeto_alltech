@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
+
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, user_name, first_name, password, **other_fields):
@@ -47,7 +48,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('Admin', default=False)
     is_active = models.BooleanField('Ativo', default=False)
     photo = models.CharField('Foto de perfil', max_length=150, null=True)
-    regional = models.CharField('Nome regional', max_length=100, blank=True)
+    cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'user_name'

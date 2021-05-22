@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Atividade, TipoAtividade, Publicacao, Midia, Ranking, \
-    Comentario, Premio, Interacao
+    Comentario, Premio, Interacao, Regional
 
 @admin.register(Atividade)
 class AtividadeAdmin(admin.ModelAdmin):
@@ -15,9 +15,9 @@ class AtividadeAdmin(admin.ModelAdmin):
 # class CidadeAdmin(admin.ModelAdmin):
 #     list_display = ('nome_cidade', 'cd_estado')
 
-# @admin.register(Regional)
-# class RegionalAdmin(admin.ModelAdmin):
-#     display = ('nome_regional')
+@admin.register(Regional)
+class RegionalAdmin(admin.ModelAdmin):
+    display = ('nome_regional')
 
 @admin.register(TipoAtividade)
 class TipoAtividadeAdmin(admin.ModelAdmin):

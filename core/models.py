@@ -43,15 +43,15 @@ class Base(models.Model):
 #     def __str__(self):
 #         return self.nome_cidade
 
-# class Regional(Base):
-#     nome_regional = models.CharField('Nome regional', max_length=100)
-#
-#     class Meta:
-#         verbose_name = 'Regional'
-#         verbose_name_plural = 'Regionais'
-#
-#     def __str__(self):
-#         return self.nome_regional
+class Regional(Base):
+    nome_regional = models.CharField('Nome regional', max_length=100)
+
+    class Meta:
+        verbose_name = 'Regional'
+        verbose_name_plural = 'Regionais'
+
+    def __str__(self):
+        return self.nome_regional
 
 
 class TipoAtividade(Base):
