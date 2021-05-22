@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-# from django.contrib.auth.models import User
 from users.models import NewUser
 from datetime import datetime
 
@@ -16,7 +15,7 @@ class Base(models.Model):
     dt_criacao = models.DateField('Data Criação', auto_now_add=True)
     dt_alteracao = models.DateField('Data Alteração', auto_now=True)
     ativo = models.BooleanField('Ativo', default=True)
-    usuario_criacao = models.ForeignKey(NewUser, on_delete=models.SET_NULL, null=True, blank=True)
+    usuario_criacao = models.ForeignKey('users.NewUser', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         abstract = True

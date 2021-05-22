@@ -36,7 +36,6 @@ class CustomAccountManager(BaseUserManager):
 
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
-
     email = models.EmailField(_('e-mail'), unique=True)
     user_name = models.CharField('Usuário', max_length=150, unique=True)
     first_name = models.CharField('Primeiro nome', max_length=150, blank=True)
@@ -48,7 +47,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('Admin', default=False)
     is_active = models.BooleanField('Ativo', default=False)
     photo = models.CharField('Foto de perfil', max_length=150, null=True)
-    cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE)
+    cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE, null=True, blank=True)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'user_name'
