@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
-from users.models import NewUser
 from datetime import datetime
+from dbview.models import DbView
 
 from stdimage.models import StdImageField
 
@@ -144,3 +144,45 @@ class Interacao(Base):
 
     def __bool__(self):
         return self.interacao
+
+
+class ViewPerfil(DbView):
+    id = models.OneToOneField('users.NewUser', on_delete=models.DO_NOTHING, primary_key=True)
+    primeiro_nome = models.CharField(max_length=100)
+    sobrenome = models.CharField(max_length=100)
+    biografia = models.TextField(max_length=200)
+    foto = models.CharField(max_length=100)
+    id_regional = models.ForeignKey(Regional, on_delete=models.DO_NOTHING)
+    nome_regional = models.CharField(max_length=100)
+
+    @classmethod
+    def get_view_str(cls):
+        return """
+             CREATE VIEW viewPerfil AS
+             select 
+                u.id as id_usuario,
+                u.first_name as primeiro_nome,
+                u.last_name as sobrenome,
+                u.about as biografia,
+                u.photo as foto,
+                regional.id as id_regional, 
+                regional.nome_regional as nome_regional
+                from users_newuser as u 
+                join core_regional as regional on regional.id = u.cd_regional_id
+                where u.is_active = true
+             """
+
+# class ModelA(models.Model):
+#     fielda = models.CharField(max_length=100)
+#     fieldc = models.IntegerField()
+
+# class MyView(DbView):
+#     fieldA = models.OneToOneField(ModelA, primary_key=True, db_column='fielda__id', on_delete=models.DO_NOTHING)
+#     fieldB = models.IntegerField(blank=True, null=True, db_column='fieldb')
+#
+#     @classmethod
+#     def get_view_str(cls):
+#         return """
+#          CREATE VIEW my_view AS
+#          select id from core_modela
+#          """

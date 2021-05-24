@@ -2,12 +2,12 @@ from django.shortcuts import render
 from rest_framework import generics, filters
 from django import forms
 
-from .models import  Atividade, TipoAtividade, Publicacao, Midia, \
-    Ranking, Comentario, Premio, Interacao, Regional
+from .models import Atividade, TipoAtividade, Publicacao, Midia, \
+    Ranking, Comentario, Premio, Interacao, Regional, ViewPerfil
 
 from .serializers import AtividadeSerializers, TipoAtividadeSerializers, PublicacaoSerializers, \
     MidiaSerializers, RankingSerializers, ComentarioSerializers, \
-    PremioSerializers, InteracaoSerializers, RegionalSerializers
+    PremioSerializers, InteracaoSerializers, RegionalSerializers, ViewPerfilSerializers
 
 class AtividadeAPIView(generics.ListCreateAPIView):
     filter_backends = (filters.SearchFilter, )
@@ -110,3 +110,8 @@ class InteracaoAPIViews(generics.ListCreateAPIView):
 class DetailInteracao(generics.RetrieveUpdateDestroyAPIView):
     queryset = Interacao.objects.filter(ativo=True)
     serializer_class = InteracaoSerializers
+
+class ViewPerfilAPIViews(generics.ListCreateAPIView):
+    filter_backends = (filters.SearchFilter,)
+    queryset = ViewPerfil.objects.all()
+    serializer_class = ViewPerfilSerializers

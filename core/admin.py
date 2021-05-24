@@ -44,6 +44,5 @@ class PremioAdmin(admin.ModelAdmin):
     list_display = ('nome_premio', 'descricao')
 
 @admin.register(Interacao)
-class Interacaodmin(admin.ModelAdmin):
+class InteracaoAdmin(admin.ModelAdmin):
     display = ('cd_publicacao', 'ativo')
-

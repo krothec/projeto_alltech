@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'datetime',
     'bootstrap4',
+    'dbview',
+
 ]
 
 MIDDLEWARE = [
