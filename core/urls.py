@@ -2,7 +2,8 @@ from django.urls import path
 from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, MidiaAPIViews, \
     DetailAtividade,  DetailTipoAtividade, RegionalAPIViews, DetailRegional, \
     DetailPublicacao, DetailMidia, RankingAPIViews, DetailRanking, ComentarioAPIViews,\
-    DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao, ViewPerfilAPIViews
+    DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao, \
+    ViewPerfilAPIViews, ViewComentarioAPIViews
 
 
 urlpatterns = [
@@ -40,6 +41,10 @@ urlpatterns = [
     path('interacao/<int:pk>', DetailInteracao.as_view()),
 
     path('viewperfil', ViewPerfilAPIViews.as_view()),
+
+    path('viewcomentario', ViewComentarioAPIViews.as_view()),
 ]
+
+
 
 

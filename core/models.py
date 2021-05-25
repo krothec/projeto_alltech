@@ -172,17 +172,35 @@ class ViewPerfil(DbView):
                 where u.is_active = true
              """
 
-# class ModelA(models.Model):
-#     fielda = models.CharField(max_length=100)
-#     fieldc = models.IntegerField()
+class ViewComentario(DbView):
+    id_publicacao = models.ForeignKey(Publicacao, on_delete=models.DO_NOTHING)
+    id_comentario = models.ForeignKey(Comentario, on_delete=models.DO_NOTHING)
+    id_usuario_comentario = models.ForeignKey('users.NewUser', on_delete=models.DO_NOTHING)
+    primeiro_nome = models.CharField(max_length=100)
+    sobrenome = models.CharField(max_length=100)
+    foto = models.CharField(max_length=100)
+    comentario = models.TextField(max_length=500)
+    id_regional = models.ForeignKey(Regional, on_delete=models.DO_NOTHING)
+    nome_regional = models.CharField(max_length=100)
 
-# class MyView(DbView):
-#     fieldA = models.OneToOneField(ModelA, primary_key=True, db_column='fielda__id', on_delete=models.DO_NOTHING)
-#     fieldB = models.IntegerField(blank=True, null=True, db_column='fieldb')
-#
-#     @classmethod
-#     def get_view_str(cls):
-#         return """
-#          CREATE VIEW my_view AS
-#          select id from core_modela
-#          """
+    @classmethod
+    def get_view_str(cls):
+        return """
+             create view viewComentario as
+                select 
+                publi.id as id_publicacao,
+                coment.id as id_comentario,
+                coment.usuario_criacao_id as id_usuario_comentario,
+                users.first_name as primeiro_nome,
+                users.last_name as sobrenome,
+                users.photo as foto,
+                coment.comentario as comentario,
+                reg.id as id_regional,
+                reg.nome_regional as nome_regional
+                from core_publicacao publi
+                join core_comentario as coment on coment.cd_publicacao_id = publi.id
+                join users_newuser users on users.id = coment.usuario_criacao_id 
+                join core_regional reg on reg.id = users.cd_regional_id 
+                where publi.ativo = true 
+                and coment.ativo = true 
+             """
