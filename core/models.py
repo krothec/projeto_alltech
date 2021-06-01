@@ -20,28 +20,6 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
-# class Estado(Base):
-#     nome_estado = models.CharField('Nome estado', max_length=100)
-#     sigla_estado = models.CharField('Sigla', max_length=2)
-#
-#     class Meta:
-#         verbose_name = 'Estado'
-#         verbose_name_plural = 'Estados'
-#
-#     def __str__(self):
-#         return self.nome_estado
-#
-# class Cidade(Base):
-#     nome_cidade = models.CharField('Nome Cidade', max_length=100)
-#     cd_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-#
-#     class Meta:
-#         verbose_name = 'Cidade'
-#         verbose_name_plural = 'Cidades'
-#
-#     def __str__(self):
-#         return self.nome_cidade
-
 class Regional(Base):
     nome_regional = models.CharField('Nome regional', max_length=100)
 
@@ -91,7 +69,8 @@ class Atividade(Base):
 
 class Midia(Base):
     cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
-    midia = StdImageField('Imagem', upload_to=get_file_path, variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
+    midia = StdImageField('Imagem', null=True, upload_to=get_file_path,
+                          variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
     descricao_midia = models.CharField('Descrição', max_length=500, default='NULL')
 
     class Meta:
@@ -123,7 +102,7 @@ class Comentario(Base):
 class Premio(Base):
     nome_premio = models.CharField('Nome prêmio', max_length=100)
     descricao = models.TextField('Descrição', max_length=500)
-    midia = StdImageField('Imagem', upload_to=get_file_path,
+    midia = StdImageField('Imagem', null=True, upload_to=get_file_path,
                           variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
     vigencia = models.DateTimeField(default=datetime.now)
     data_premiacao = models.DateTimeField(default=datetime.now)
@@ -289,6 +268,6 @@ class ViewPublicacao(DbView):
             from core_regional as reg
             join users_newuser users on users.cd_regional_id = reg.id 
             join core_publicacao as publi on publi.usuario_criacao_id = users.id 
-            join core_midia as mid on mid.cd_publicacao_id = publi.id
+            left join core_midia as mid on mid.cd_publicacao_id = publi.id
             where publi.ativo = true 
             """

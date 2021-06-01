@@ -3,7 +3,13 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+from stdimage.models import StdImageField
+import uuid
 
+def get_file_path(_instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return filename
 
 class CustomAccountManager(BaseUserManager):
 
@@ -45,7 +51,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
         'Biografia'), max_length=500, blank=True)
     is_staff = models.BooleanField('Admin', default=False)
     is_active = models.BooleanField('Ativo', default=False)
-    photo = models.CharField('Foto de perfil', max_length=150, null=True)
+    photo = StdImageField('Imagem', null=True, upload_to=get_file_path,
+                          variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
     cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE, null=True, blank=True)
     objects = CustomAccountManager()
 

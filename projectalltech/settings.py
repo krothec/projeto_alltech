@@ -92,9 +92,9 @@ DATABASES = {
         'PASSWORD': 'Cordeiro03',
         'HOST': '177.71.161.129',
         'PORT': '3931'
-
     }
 }
+
 """
 DATABASES = {
     'default': dj_database_url.config()
