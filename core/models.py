@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from datetime import datetime
-from django_db_views.db_view import DBView
 
 def get_file_path(_instance, filename):
     ext = filename.split('.')[-1]
