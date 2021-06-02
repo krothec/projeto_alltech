@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'datetime',
     'bootstrap4',
     'dbview',
+    'django_db_views'
 
 ]
 
