@@ -3,11 +3,12 @@ from rest_framework import generics, filters
 from django import forms
 
 from .models import Atividade, TipoAtividade, Publicacao, Midia, \
-    Ranking, Comentario, Premio, Interacao, Regional, Referencia
+    Ranking, Comentario, Premio, Interacao, Regional, Referencia, \
+    ViewAtividades
 
 from .serializers import AtividadeSerializers, TipoAtividadeSerializers, PublicacaoSerializers, \
     MidiaSerializers, RankingSerializers, ComentarioSerializers, \
-    PremioSerializers, InteracaoSerializers, RegionalSerializers, ReferenciaSerializers
+    PremioSerializers, InteracaoSerializers, RegionalSerializers, ReferenciaSerializers, ViewAtividadesSerializers
 
 
 class AtividadeAPIView(generics.ListCreateAPIView):
@@ -118,5 +119,11 @@ class InteracaoAPIViews(generics.ListCreateAPIView):
 class DetailInteracao(generics.RetrieveUpdateDestroyAPIView):
     queryset = Interacao.objects.filter(ativo=True)
     serializer_class = InteracaoSerializers
+
+
+class ViewAtividadesAPIViews(generics.ListCreateAPIView):
+    filter_backends = (filters.SearchFilter,)
+    queryset = ViewAtividades.objects.filter(ativo=True)
+    serializer_class = ViewAtividadesSerializers
 
 

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'users',
     'rest_framework',
     'datetime',
-    'bootstrap4'
+    'bootstrap4',
+    'django_db_views',
 ]
 
 MIDDLEWARE = [

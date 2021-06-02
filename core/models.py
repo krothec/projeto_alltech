@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from datetime import datetime
 
+from django_db_views.db_view import DBView
+
 def get_file_path(_instance, filename):
     ext = filename.split('.')[-1]
     filename = f'{uuid.uuid4()}.{ext}'
@@ -132,4 +134,26 @@ class Referencia(Base):
     def __str__(self):
         return self.tipo_dado
 
+
+class ViewAtividades(DBView):
+    id_publicacao = models.ForeignKey(Publicacao, on_delete=models.DO_NOTHING)
+    id_atividade = models.ForeignKey(Atividade, on_delete=models.DO_NOTHING)
+    descricao_atividade = models.CharField(max_length=100)
+    ativo = models.BooleanField('Ativo', default=True)
+
+    view_definition = """
+        select 
+            publi.id as id_publicacao,
+            atv.id as id_atividade,
+            tipoatv.descricao_atividade as descricao_atividade
+            from core_tipoatividade tipoatv
+            left join core_atividade atv on tipoatv.id = atv.cd_tipo_atividade_id
+            join core_publicacao publi on atv.cd_publicacao_id = publi.id 
+            where publi.ativo = true
+            and tipoatv.ativo = true
+        """
+
+    class Meta:
+        managed = False
+        db_table = 'viewAtividades'
 

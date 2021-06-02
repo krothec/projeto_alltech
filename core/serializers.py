@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from .models import Atividade,  Regional, Referencia, \
-    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao
+    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao, \
+    ViewAtividades
 
 
 class AtividadeSerializers(serializers.ModelSerializer):
@@ -61,6 +62,12 @@ class PremioSerializers(serializers.ModelSerializer):
 class InteracaoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Interacao
+        fields = "__all__"
+
+
+class ViewAtividadesSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ViewAtividades
         fields = "__all__"
 
 
