@@ -53,8 +53,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField('Ativo', default=False)
     photo = StdImageField('Imagem', null=True, upload_to=get_file_path,
                           variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
-    # cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE, null=True, blank=True)
-    cd_regional = models.IntegerField(blank=True, null=True)
+    cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE, null=True, blank=True)
+    # cd_regional = models.IntegerField(blank=True, null=True)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'user_name'
