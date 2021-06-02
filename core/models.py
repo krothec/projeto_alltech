@@ -69,8 +69,9 @@ class Atividade(Base):
 
 class Midia(Base):
     cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
-    midia = StdImageField('Imagem', null=True, upload_to=get_file_path,
-                          variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
+    # midia = StdImageField('Imagem', null=True, upload_to=get_file_path,
+    #                       variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
+    midia = models.ImageField(upload_to=get_file_path, null=True)
     descricao_midia = models.CharField('Descrição', max_length=500, default='NULL')
 
     class Meta:
@@ -102,8 +103,9 @@ class Comentario(Base):
 class Premio(Base):
     nome_premio = models.CharField('Nome prêmio', max_length=100)
     descricao = models.TextField('Descrição', max_length=500)
-    midia = StdImageField('Imagem', null=True, upload_to=get_file_path,
-                          variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
+    # midia = StdImageField('Imagem', null=True, upload_to=get_file_path,
+    #                       variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
+    midia = models.ImageField(upload_to=get_file_path, null=True)
     vigencia = models.DateTimeField(default=datetime.now)
     data_premiacao = models.DateTimeField(default=datetime.now)
 
@@ -123,6 +125,20 @@ class Interacao(Base):
 
     def __bool__(self):
         return self.interacao
+
+class Referencia(Base):
+    tipo_dado = models.CharField('Pontuação', max_length=100)
+    nome_tabela = models.CharField('Nome tabela', max_length=100)
+    nome_campo = models.CharField('Nome campo', max_length=100)
+    valor = models.CharField('Valor', max_length=100)
+
+    class Meta:
+        verbose_name = 'Referência'
+        verbose_name_plural = 'Referências'
+
+    def __str__(self):
+        return self.tipo_dado
+
 
 class ViewPerfil(DbView):
     id = models.OneToOneField('users.NewUser', on_delete=models.DO_NOTHING, primary_key=True)

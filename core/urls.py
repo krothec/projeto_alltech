@@ -4,11 +4,15 @@ from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, 
     DetailPublicacao, DetailMidia, RankingAPIViews, DetailRanking, ComentarioAPIViews,\
     DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao, \
     ViewPerfilAPIViews, ViewComentarioAPIViews, ViewInteracaoAPIViews, ViewAtividadesAPIViews, \
-ViewPublicacaoAPIViews
+    ViewPublicacaoAPIViews, ReferenciaAPIView, DetailReferencia
+
 
 urlpatterns = [
     path('atividades', AtividadeAPIView.as_view()),
     path('atividades/<int:pk>', DetailAtividade.as_view()),
+
+    path('referencia', ReferenciaAPIView.as_view()),
+    path('referencia/<int:pk>', DetailReferencia.as_view()),
 
     path('regional', RegionalAPIViews.as_view()),
     path('regional/<int:pk>', DetailRegional.as_view()),
@@ -28,7 +32,7 @@ urlpatterns = [
     path('comentario', ComentarioAPIViews.as_view()),
     path('comentario/<int:pk>', DetailComentario.as_view()),
 
-    path('from', PremioAPIViews.as_view()),
+    path('premio', PremioAPIViews.as_view()),
     path('premio/<int:pk>', DetailPremio.as_view()),
 
     path('interacao', InteracaoAPIViews.as_view()),
