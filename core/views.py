@@ -3,14 +3,11 @@ from rest_framework import generics, filters
 from django import forms
 
 from .models import Atividade, TipoAtividade, Publicacao, Midia, \
-    Ranking, Comentario, Premio, Interacao, Regional, \
-    ViewPerfil, ViewComentario, ViewInteracao, ViewAtividades, ViewPublicacao
+    Ranking, Comentario, Premio, Interacao, Regional
 
 from .serializers import AtividadeSerializers, TipoAtividadeSerializers, PublicacaoSerializers, \
     MidiaSerializers, RankingSerializers, ComentarioSerializers, \
-    PremioSerializers, InteracaoSerializers, RegionalSerializers, \
-    ViewPerfilSerializers, ViewComentarioSerializers, ViewInteracaoSerializers, \
-    ViewPublicacaoSerializers, ViewAtividadesSerializers
+    PremioSerializers, InteracaoSerializers, RegionalSerializers
 
 
 class AtividadeAPIView(generics.ListCreateAPIView):
@@ -111,34 +108,4 @@ class DetailInteracao(generics.RetrieveUpdateDestroyAPIView):
     queryset = Interacao.objects.filter(ativo=True)
     serializer_class = InteracaoSerializers
 
-
-class ViewPerfilAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter,)
-    queryset = ViewPerfil.objects.all()
-    serializer_class = ViewPerfilSerializers
-
-
-class ViewComentarioAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter,)
-    queryset = ViewComentario.objects.all()
-    serializer_class = ViewComentarioSerializers
-
-
-class ViewInteracaoAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter,)
-    queryset = ViewInteracao.objects.all()
-    serializer_class = ViewInteracaoSerializers
-
-
-
-class ViewAtividadesAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter,)
-    queryset = ViewAtividades.objects.all()
-    serializer_class = ViewAtividadesSerializers
-
-
-class ViewPublicacaoAPIViews(generics.ListCreateAPIView):
-    filter_backends = (filters.SearchFilter,)
-    queryset = ViewPublicacao.objects.all()
-    serializer_class = ViewPublicacaoSerializers
 

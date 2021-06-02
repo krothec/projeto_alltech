@@ -1,27 +1,13 @@
 from rest_framework import serializers
 
 from .models import Atividade,  Regional, \
-    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao, \
-    ViewPerfil, ViewComentario, ViewInteracao, ViewAtividades, ViewPublicacao
+    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao
 
 
 class AtividadeSerializers(serializers.ModelSerializer):
     class Meta:
         model = Atividade
         fields = "__all__"
-
-
-# class CidadeSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = Cidade
-#         fields = "__all__"
-
-
-# class EstadoSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = Estado
-#         fields = "__all__"
-
 
 class RegionalSerializers(serializers.ModelSerializer):
     class Meta:
@@ -68,34 +54,4 @@ class PremioSerializers(serializers.ModelSerializer):
 class InteracaoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Interacao
-        fields = "__all__"
-
-
-class ViewPerfilSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ViewPerfil
-        fields = "__all__"
-
-
-class ViewComentarioSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ViewComentario
-        fields = "__all__"
-
-
-class ViewInteracaoSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ViewInteracao
-        fields = "__all__"
-
-
-class ViewAtividadesSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ViewAtividades
-        fields = "__all__"
-
-
-class ViewPublicacaoSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ViewPublicacao
         fields = "__all__"
