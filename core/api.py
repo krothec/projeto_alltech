@@ -1,12 +1,15 @@
 from rest_framework import viewsets
 
 from .models import Atividade, TipoAtividade, \
-    Publicacao, Midia, Ranking, Comentario, Premio, Interacao
+    Publicacao, Midia, Ranking, Comentario, Premio, Interacao, \
+    ViewPerfil, ViewInteracao, ViewAtividades, ViewPublicacao, ViewComentario
 
 
 from .serializers import AtividadeSerializers, TipoAtividadeSerializers, \
     PublicacaoSerializers, MidiaSerializers, RankingSerializers, \
-    ComentarioSerializers, PremioSerializers, InteracaoSerializers
+    ComentarioSerializers, PremioSerializers, InteracaoSerializers, \
+    ViewPerfilSerializers, ViewInteracaoSerializers, ViewAtividadesSerializers, \
+    ViewPublicacaoSerializers, ViewComentarioSerializers
 
 
 class AtividadeViewSet(viewsets.ModelViewSet):
@@ -48,4 +51,28 @@ class InteracaoViewSet(viewsets.ModelViewSet):
     queryset = Interacao.objects.all()
     serializer_class = InteracaoSerializers
 
+
+class ViewPerfilViewSet(viewsets.ModelViewSet):
+    queryset = ViewPerfil.objects.all()
+    serializer_class = ViewPerfilSerializers
+
+
+class ViewInteracaoViewSet(viewsets.ModelViewSet):
+    queryset = ViewInteracao.objects.all()
+    serializer_class = ViewInteracaoSerializers
+
+
+class ViewAtividadesViewSet(viewsets.ModelViewSet):
+    queryset = ViewAtividades.objects.all()
+    serializer_class = ViewAtividadesSerializers
+
+
+class ViewPublicacaoViewSet(viewsets.ModelViewSet):
+    queryset = ViewPublicacao.objects.all()
+    serializer_class = ViewPublicacaoSerializers
+
+
+class ViewComentarioViewSet(viewsets.ModelViewSet):
+    queryset = ViewComentario.objects.all()
+    serializer_class = ViewComentarioSerializers
 
