@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'datetime',
     'bootstrap4',
-    'django_db_views',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +150,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = 'index'
 
 AUTH_USER_MODEL = 'users.NewUser'
+
+YELP_API_KEY = 'lx9g7fqdImA7hPI9fqxAQn_AlHtIQdUC2wZOtGPjuwsllIX7IAVxqUWhgs6-U76fe-IZyFNrG_gj_6sxShOPC0dbvduNUtlXp-t3h9UENG4RkYYZpItDs6pi0cK4YHYx'
+
+GEOIP_PATH = os.path.join(BASE_DIR / 'geoip')
+

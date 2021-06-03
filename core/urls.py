@@ -3,7 +3,8 @@ from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, 
     DetailAtividade,  DetailTipoAtividade, RegionalAPIViews, DetailRegional, \
     DetailPublicacao, DetailMidia, RankingAPIViews, DetailRanking, ComentarioAPIViews,\
     DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao, ReferenciaAPIView,\
-    DetailReferencia, UserAPIView, DetailUser
+    DetailReferencia, UserAPIView, DetailUser, \
+    IndexView
 
 
 urlpatterns = [
@@ -39,6 +40,8 @@ urlpatterns = [
 
     path('usuario', UserAPIView.as_view()),
     path('usuario/<int:pk>', DetailUser.as_view()),
+
+    path('', IndexView.as_view(), name='index'),
 
 ]
 
