@@ -19,8 +19,6 @@ class AtividadeSerializers(serializers.ModelSerializer):
 
 
 class TipoAtividadeSerializers(serializers.ModelSerializer):
-    atividade = AtividadeSerializers(many=True, read_only=True)
-
     class Meta:
         model = TipoAtividade
         fields = "__all__"
@@ -44,6 +42,7 @@ class PublicacaoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Publicacao
         fields = "__all__"
+        depth = 3
 
 
 class MidiaSerializers(serializers.ModelSerializer):

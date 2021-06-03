@@ -11,7 +11,7 @@ def get_file_path(_instance, filename):
 
 class Base(models.Model):
     dt_criacao = models.DateField('Data Criação', auto_now_add=True)
-    dt_alteracao = models.DateField('Data Alteração', auto_now=True)
+    dt_alteracao = models.DateField('Data Alteração', null=True)
     ativo = models.BooleanField('Ativo', default=True)
 
     class Meta:
@@ -61,7 +61,7 @@ class Publicacao(Base):
 class Atividade(Base):
     cd_publicacao = models.ForeignKey(Publicacao, related_name='atividade', on_delete=models.CASCADE)
     cd_tipo_atividade = models.ForeignKey(TipoAtividade, on_delete=models.CASCADE)
-    usuario_criacao = models.ForeignKey('users.NewUser',
+    usuario_criacao = models.ForeignKey('users.NewUser', related_name='usuario',
                                         on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
