@@ -1,13 +1,28 @@
 from rest_framework import serializers
 
 from .models import Atividade,  Regional, Referencia, \
-    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao, \
-    ViewAtividades
+    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao
+
+from users.models import NewUser
+
+
+class UserSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = NewUser
+        fields = "__all__"
 
 
 class AtividadeSerializers(serializers.ModelSerializer):
     class Meta:
         model = Atividade
+        fields = "__all__"
+
+
+class TipoAtividadeSerializers(serializers.ModelSerializer):
+    atividade = AtividadeSerializers(many=True, read_only=True)
+
+    class Meta:
+        model = TipoAtividade
         fields = "__all__"
 
 
@@ -23,13 +38,9 @@ class RegionalSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class TipoAtividadeSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = TipoAtividade
-        fields = "__all__"
-
-
 class PublicacaoSerializers(serializers.ModelSerializer):
+    atividade = AtividadeSerializers(many=True, read_only=True)
+
     class Meta:
         model = Publicacao
         fields = "__all__"
@@ -62,12 +73,6 @@ class PremioSerializers(serializers.ModelSerializer):
 class InteracaoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Interacao
-        fields = "__all__"
-
-
-class ViewAtividadesSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ViewAtividades
         fields = "__all__"
 
 

@@ -1,12 +1,12 @@
 from rest_framework import viewsets
 
 from .models import Atividade, TipoAtividade, Referencia, \
-    Publicacao, Midia, Ranking, Comentario, Premio, Interacao,  ViewAtividades
+    Publicacao, Midia, Ranking, Comentario, Premio, Interacao
 
 
 from .serializers import AtividadeSerializers, TipoAtividadeSerializers, \
     PublicacaoSerializers, MidiaSerializers, RankingSerializers, \
-    ComentarioSerializers, PremioSerializers, InteracaoSerializers, ReferenciaSerializers, ViewAtividadesSerializers
+    ComentarioSerializers, PremioSerializers, InteracaoSerializers, ReferenciaSerializers
 
 
 class AtividadeViewSet(viewsets.ModelViewSet):
@@ -52,9 +52,4 @@ class PremioViewSet(viewsets.ModelViewSet):
 class InteracaoViewSet(viewsets.ModelViewSet):
     queryset = Interacao.objects.all()
     serializer_class = InteracaoSerializers
-
-
-class ViewAtividadesViewSet(viewsets.ModelViewSet):
-    queryset = ViewAtividades.objects.all()
-    serializer_class = ViewAtividadesSerializers
 
