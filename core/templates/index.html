@@ -7,8 +7,9 @@
                 <div class="form-group">
                     <h4><a href="{% url 'index' %}">Random IP</a></h4>
                     <h4>[{{ city }} {% if country %} - {{ country }} {% endif %}]</h4>
-                    <h4>{{ ip }}</h4>
+                    <h4>IP do usuário: {{ ip }} </h4>
                 </div>
             </form>
         </div>
 {% endblock %}
+

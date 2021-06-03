@@ -2,7 +2,7 @@ from rest_framework import generics, filters
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
 
-from .utils import yelp_search, get_client_data, get_random_ip
+from .utils import get_client_data, get_random_ip, get_client_ip
 
 from .models import Atividade, TipoAtividade, Publicacao, Midia, \
     Ranking, Comentario, Premio, Interacao, Regional, Referencia
@@ -136,34 +136,24 @@ class DetailInteracao(generics.RetrieveUpdateDestroyAPIView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
     def get(self, request, *args, **kwargs):
         items = []
-
         city = None
+        ip = get_client_ip(request)
 
         while not city:
-            ret = get_client_data()
+            ret = get_client_data(request)
             if ret:
                 city = ret['city']
-        ip = get_random_ip()
-        q = request.GET.get('key', None)
-        loc = request.GET.get('loc', None)
+            else:
+                city = 'Brasil'
         location = city
 
         context = {
             'city': city,
             'busca': False,
-            'ip': ip,
+            'location': location,
+            'ip': ip
         }
-
-        if loc:
-            location = loc
-        if q:
-            items = yelp_search(keyword=q, location=location)
-            context = {
-                'items': items,
-                'city': location,
-                'busca': True,
-                'ip': ip,
-            }
         return render(request, 'index.html', context)

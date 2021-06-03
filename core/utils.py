@@ -7,22 +7,22 @@ from django.contrib.gis.geoip2 import geoip2
 YELP_SEARCH_ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
 
 
-def yelp_search(keyword=None, location=None):
-    headers = {"Authorization": "Bearer " + settings.YELP_API_KEY}
+# def yelp_search(keyword=None, location=None):
+#     headers = {"Authorization": "Bearer " + settings.YELP_API_KEY}
+#
+#     if keyword and location:
+#         params = {'term': keyword, 'location': location}
+#     else:
+#         params = {'term': 'Pizzaria', 'location': 'São Paulo'}
+#
+#     r = requests.get(YELP_SEARCH_ENDPOINT, headers=headers, params=params)
+#
+#     return r.json()
 
-    if keyword and location:
-        params = {'term': keyword, 'location': location}
-    else:
-        params = {'term': 'Pizzaria', 'location': 'São Paulo'}
 
-    r = requests.get(YELP_SEARCH_ENDPOINT, headers=headers, params=params)
-
-    return r.json()
-
-
-def get_client_data():
+def get_client_data(request):
     g = GeoIP2()
-    ip = get_random_ip()
+    ip = get_client_ip(request)
     try:
         return g.city(ip)
     except geoip2.errors.AddressNotFoundError:
@@ -31,3 +31,12 @@ def get_client_data():
 
 def get_random_ip():
     return '.'.join([str(randint(0, 255)) for x in range(4)])
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
