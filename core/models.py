@@ -71,8 +71,9 @@ class Atividade(Base):
     def __int__(self):
         return self.cd_tipo_atividade
 
+
 class Midia(Base):
-    cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
+    cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE, related_name='midia')
     midia = models.ImageField(upload_to=get_file_path, null=True)
     descricao_midia = models.CharField('Descrição', max_length=500, default='NULL')
     usuario_criacao = models.ForeignKey('users.NewUser',
