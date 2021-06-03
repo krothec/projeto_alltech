@@ -60,7 +60,7 @@ class Publicacao(Base):
 
 class Atividade(Base):
     cd_publicacao = models.ForeignKey(Publicacao, related_name='atividade', on_delete=models.CASCADE)
-    cd_tipo_atividade = models.ForeignKey(TipoAtividade, on_delete=models.CASCADE)
+    cd_tipo_atividade = models.ForeignKey(TipoAtividade, on_delete=models.CASCADE, related_name='tipo_atividade')
     usuario_criacao = models.ForeignKey('users.NewUser', related_name='usuario',
                                         on_delete=models.SET_NULL, null=True, blank=True)
 
