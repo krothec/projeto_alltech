@@ -6,6 +6,8 @@ from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, 
     DetailReferencia, UserAPIView, DetailUser, \
     IndexView
 
+from .utils import get_client_ip
+
 
 urlpatterns = [
     path('atividades', AtividadeAPIView.as_view()),
@@ -41,7 +43,7 @@ urlpatterns = [
     path('usuario', UserAPIView.as_view()),
     path('usuario/<int:pk>', DetailUser.as_view()),
 
-    path('', IndexView.as_view(), name='index'),
+    path('geoloc', IndexView.as_view(), name='index'),
 
 ]
 

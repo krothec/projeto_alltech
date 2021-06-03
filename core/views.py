@@ -1,6 +1,8 @@
 from rest_framework import generics, filters
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
+import json
+import requests
 
 from .utils import get_client_data, get_random_ip, get_client_ip
 
@@ -137,23 +139,37 @@ class DetailInteracao(generics.RetrieveUpdateDestroyAPIView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
-    def get(self, request, *args, **kwargs):
-        items = []
-        city = None
-        ip = get_client_ip(request)
 
-        while not city:
-            ret = get_client_data(request)
-            if ret:
-                city = ret['city']
-            else:
-                city = 'Brasil'
-        location = city
+
+    def get(self, request, *args, **kwargs):
+        user_ip = get_client_ip(request)
+        url = f'http://api.ipstack.com/{user_ip}?access_key=e6d04720017effceba16529a86a93c2c'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(url, headers)
+        parsed_json = (json.loads(response.text))
 
         context = {
-            'city': city,
-            'busca': False,
-            'location': location,
-            'ip': ip
+            'parsed_json': parsed_json
         }
+        # items = []
+        # city = None
+        # ip = get_client_ip(request)
+        #
+        # while not city:
+        #     ret = get_client_data(request)
+        #     if ret:
+        #         city = ret['city']
+        #     else:
+        #         city = 'Brasil'
+        # location = city
+        #
+        # context = {
+        #     'city': city,
+        #     'busca': False,
+        #     'location': location,
+        #     'ip': ip
+        # }
+        # return render(request, 'index.html', context)
+
         return render(request, 'index.html', context)
+
