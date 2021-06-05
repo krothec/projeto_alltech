@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'datetime',
     'bootstrap4',
+    'rest_framework.authtoken',
+    'rest_auth'
 ]
 
 MIDDLEWARE = [

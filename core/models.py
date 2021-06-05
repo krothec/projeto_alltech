@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from datetime import datetime
 
+from django.utils import timezone
+
 
 def get_file_path(_instance, filename):
     ext = filename.split('.')[-1]
@@ -10,8 +12,8 @@ def get_file_path(_instance, filename):
 
 
 class Base(models.Model):
-    dt_criacao = models.DateField('Data Criação', auto_now_add=True)
-    dt_alteracao = models.DateField('Data Alteração', null=True)
+    dt_criacao = models.DateTimeField('Data início', default=timezone.now)
+    dt_alteracao = models.DateTimeField('Data Alteracao', null=True)
     ativo = models.BooleanField('Ativo', default=True)
 
     class Meta:
@@ -47,7 +49,7 @@ class Publicacao(Base):
     localizacao = models.FloatField('Localização', max_length=10000)
     data_atividade = models.DateField('Data Atividade', auto_now_add=True)
     descricao = models.TextField('Descrição', max_length=500)
-    usuario_criacao = models.ForeignKey('users.NewUser',
+    usuario_criacao = models.ForeignKey('users.NewUser', related_name='publicacao',
                                         on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
@@ -96,7 +98,7 @@ class Ranking(Base):
         return self.cd_publicacao
 
 class Comentario(Base):
-    cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
+    cd_publicacao = models.ForeignKey(Publicacao, related_name= 'comentario', on_delete=models.CASCADE)
     comentario = models.TextField('Comentário', max_length=500)
     usuario_criacao = models.ForeignKey('users.NewUser',
                                         on_delete=models.SET_NULL, null=True, blank=True)
@@ -125,7 +127,7 @@ class Premio(Base):
         return self.descricao
 
 class Interacao(Base):
-    cd_publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
+    cd_publicacao = models.ForeignKey(Publicacao, related_name='interacao', on_delete=models.CASCADE)
     usuario_criacao = models.ForeignKey('users.NewUser',
                                         on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -135,6 +137,7 @@ class Interacao(Base):
 
     def __bool__(self):
         return self.interacao
+
 
 class Referencia(Base):
     tipo_dado = models.CharField('Pontuação', max_length=100)

@@ -151,25 +151,6 @@ class IndexView(TemplateView):
         context = {
             'parsed_json': parsed_json
         }
-        # items = []
-        # city = None
-        # ip = get_client_ip(request)
-        #
-        # while not city:
-        #     ret = get_client_data(request)
-        #     if ret:
-        #         city = ret['city']
-        #     else:
-        #         city = 'Brasil'
-        # location = city
-        #
-        # context = {
-        #     'city': city,
-        #     'busca': False,
-        #     'location': location,
-        #     'ip': ip
-        # }
-        # return render(request, 'index.html', context)
 
         return render(request, 'index.html', context)
 
