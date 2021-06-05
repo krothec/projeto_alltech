@@ -52,7 +52,14 @@ class PublicacaoSerializers(serializers.ModelSerializer):
         depth = 4
 
 
+class ComentarioSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = "__all__"
+        depth = 4
+
 class UserSerializers(serializers.ModelSerializer):
+    publicacao = PublicacaoSerializers(many=True, read_only=True)
 
     class Meta:
         model = NewUser
@@ -66,11 +73,7 @@ class RankingSerializers(serializers.ModelSerializer):
         depth = 4
 
 
-class ComentarioSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Comentario
-        fields = "__all__"
-        depth = 4
+
 
 
 class PremioSerializers(serializers.ModelSerializer):
