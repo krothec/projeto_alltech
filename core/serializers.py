@@ -59,7 +59,7 @@ class InteracaoSerializers(serializers.ModelSerializer):
 
 class PublicacaoSerializers(serializers.ModelSerializer):
     atividade = AtividadeSerializers(many=True, read_only=True)
-    # midia = MidiaSerializers(many=True, read_only=True)
+    midia = MidiaSerializers(many=True, read_only=True)
     # comentario = ComentarioSerializers(many=True, read_only=True)
     # interacao = InteracaoSerializers(many=True, read_only=True)
 
