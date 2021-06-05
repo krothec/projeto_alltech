@@ -53,7 +53,7 @@ class PublicacaoSerializers(serializers.ModelSerializer):
 
 
 class UserSerializers(serializers.ModelSerializer):
-    publicacao = PublicacaoSerializers(many=True, read_only=True)
+
     class Meta:
         model = NewUser
         fields = "__all__"
