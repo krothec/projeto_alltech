@@ -1,6 +1,9 @@
 from rest_framework import generics, filters
+from rest_framework.renderers import TemplateHTMLRenderer
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 import json
 import requests
 
@@ -59,7 +62,7 @@ class DetailRegional(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RegionalSerializers
 
 
-class TipoAtividadeAPIViews(generics.ListCreateAPIView):
+class TipoAtividadeAPIViews(generics.ListCreateAPIView, APIView):
     filter_backends = (filters.SearchFilter, )
     queryset = TipoAtividade.objects.filter(ativo=True)
     serializer_class = TipoAtividadeSerializers
@@ -138,8 +141,6 @@ class DetailInteracao(generics.RetrieveUpdateDestroyAPIView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-
-
 
     def get(self, request, *args, **kwargs):
         user_ip = get_client_ip(request)

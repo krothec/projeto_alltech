@@ -69,8 +69,6 @@ class PublicacaoSerializers(serializers.ModelSerializer):
         depth = 4
 
 
-
-
 class UserSerializers(serializers.ModelSerializer):
     publicacao = PublicacaoSerializers(many=True, read_only=True)
 
@@ -79,14 +77,12 @@ class UserSerializers(serializers.ModelSerializer):
         fields = "__all__"
         depth = 4
 
+
 class RankingSerializers(serializers.ModelSerializer):
     class Meta:
         model = Ranking
         fields = "__all__"
         depth = 4
-
-
-
 
 
 class PremioSerializers(serializers.ModelSerializer):
