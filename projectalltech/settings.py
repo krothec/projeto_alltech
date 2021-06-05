@@ -161,7 +161,7 @@ GEOIP_PATH = os.path.join(BASE_DIR / 'geoip')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ]
 }
 
