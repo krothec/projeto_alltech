@@ -98,7 +98,7 @@ class Ranking(Base):
         return self.cd_publicacao
 
 class Comentario(Base):
-    cd_publicacao = models.ForeignKey(Publicacao, related_name= 'comentario', on_delete=models.CASCADE)
+    cd_publicacao = models.ForeignKey(Publicacao, related_name='comentario', on_delete=models.CASCADE)
     comentario = models.TextField('Comentário', max_length=500)
     usuario_criacao = models.ForeignKey('users.NewUser',
                                         on_delete=models.SET_NULL, null=True, blank=True)
