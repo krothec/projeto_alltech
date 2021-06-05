@@ -55,6 +55,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
                           variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
     cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE, null=True, blank=True)
     objects = CustomAccountManager()
+    cd_publicacao = models.ForeignKey('core.Publicacao', related_name='usuario',
+                                      on_delete=models.CASCADE, null=True, blank=True)
     USERNAME_FIELD = 'user_name'
     REQUIRED_FIELDS = ['email', 'first_name']
 
