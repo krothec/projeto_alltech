@@ -66,7 +66,7 @@ class PublicacaoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Publicacao
         fields = "__all__"
-        depth = 4
+        depth = 5
 
 
 class UserSerializers(serializers.ModelSerializer):
