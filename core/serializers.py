@@ -43,20 +43,33 @@ class MidiaSerializers(serializers.ModelSerializer):
         depth = 4
 
 
+class ComentarioSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = "__all__"
+        depth = 4
+
+
+class InteracaoSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Interacao
+        fields = "__all__"
+        depth = 4
+
+
 class PublicacaoSerializers(serializers.ModelSerializer):
     atividade = AtividadeSerializers(many=True, read_only=True)
     midia = MidiaSerializers(many=True, read_only=True)
+    comentario = ComentarioSerializers(many=True, read_only=True)
+    interacao = InteracaoSerializers(many=True, read_only=True)
+
     class Meta:
         model = Publicacao
         fields = "__all__"
         depth = 4
 
 
-class ComentarioSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Comentario
-        fields = "__all__"
-        depth = 4
+
 
 class UserSerializers(serializers.ModelSerializer):
     publicacao = PublicacaoSerializers(many=True, read_only=True)
@@ -83,11 +96,6 @@ class PremioSerializers(serializers.ModelSerializer):
         depth = 4
 
 
-class InteracaoSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Interacao
-        fields = "__all__"
-        depth = 4
 
 
 

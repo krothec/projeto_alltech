@@ -103,6 +103,7 @@ class Comentario(Base):
     usuario_criacao = models.ForeignKey('users.NewUser',
                                         on_delete=models.SET_NULL, null=True, blank=True)
 
+
     class Meta:
         verbose_name = 'Comentário'
         verbose_name_plural = 'Comentários'
