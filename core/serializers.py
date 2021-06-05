@@ -56,14 +56,6 @@ class InteracaoSerializers(serializers.ModelSerializer):
         fields = "__all__"
         depth = 4
 
-class UserSerializers(serializers.ModelSerializer):
-    # publicacao = PublicacaoSerializers(many=True, read_only=True)
-
-    class Meta:
-        model = NewUser
-        fields = "__all__"
-        depth = 4
-
 
 
 class PublicacaoSerializers(serializers.ModelSerializer):
@@ -71,13 +63,20 @@ class PublicacaoSerializers(serializers.ModelSerializer):
     midia = MidiaSerializers(many=True, read_only=True)
     comentario = ComentarioSerializers(many=True, read_only=True)
     interacao = InteracaoSerializers(many=True, read_only=True)
-    usuario = UserSerializers(many=True, read_only=True)
+
     class Meta:
         model = Publicacao
         fields = "__all__"
         depth = 4
 
 
+class UserSerializers(serializers.ModelSerializer):
+    publicacao = PublicacaoSerializers(many=True, read_only=True)
+
+    class Meta:
+        model = NewUser
+        fields = "__all__"
+        depth = 4
 
 
 class RankingSerializers(serializers.ModelSerializer):
