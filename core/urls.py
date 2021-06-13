@@ -10,6 +10,10 @@ from .utils import get_client_ip
 
 
 urlpatterns = [
+
+    path('tipoAtividade/', TipoAtividadeAPIViews.as_view()),
+    path('tipoAtividade/<int:pk>', DetailTipoAtividade.as_view()),
+
     path('atividades', AtividadeAPIView.as_view()),
     path('atividades/<int:pk>', DetailAtividade.as_view()),
 
@@ -19,8 +23,6 @@ urlpatterns = [
     path('regional', RegionalAPIViews.as_view()),
     path('regional/<int:pk>', DetailRegional.as_view()),
 
-    path('tipoAtividade', TipoAtividadeAPIViews.as_view()),
-    path('tipoAtividade/<int:pk>', DetailTipoAtividade.as_view()),
 
     path('publicacao', PublicacaoAPIViews.as_view()),
     path('publicacao/<int:pk>', DetailPublicacao.as_view()),
@@ -43,7 +45,6 @@ urlpatterns = [
     path('usuario', UserAPIView.as_view()),
     path('usuario/<int:pk>', DetailUser.as_view()),
 
-    path('geoloc', IndexView.as_view(), name='index'),
 
 ]
 

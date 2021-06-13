@@ -21,7 +21,7 @@ class CustomAccountManager(BaseUserManager):
 
         if other_fields.get('is_staff') is not True:
             raise ValueError(
-                'Superuser must be assigned to is_staff=True.')
+                'Superuser precisa estar com is_staff=True.')
         if other_fields.get('is_superuser') is not True:
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
@@ -31,7 +31,7 @@ class CustomAccountManager(BaseUserManager):
     def create_user(self, email, user_name, first_name, password, **other_fields):
 
         if not email:
-            raise ValueError(_('You must provide an email address'))
+            raise ValueError(_('E-mail obrigatório'))
 
         email = self.normalize_email(email)
         user = self.model(email=email, user_name=user_name,
@@ -50,13 +50,15 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     about = models.TextField(_(
         'Biografia'), max_length=500, blank=True)
     is_staff = models.BooleanField('Admin', default=False)
-    is_active = models.BooleanField('Ativo', default=False)
+    is_active = models.BooleanField('Ativo', default=True)
     photo = StdImageField('Imagem', null=True, upload_to=get_file_path,
                           variations={'thumb': {'width': 480, 'height': 480, 'crop': True}})
     cd_regional = models.ForeignKey('core.Regional', on_delete=models.CASCADE, null=True, blank=True)
+
     objects = CustomAccountManager()
-    USERNAME_FIELD = 'user_name'
-    REQUIRED_FIELDS = ['email', 'first_name']
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['user_name', 'first_name']
 
     def __str__(self):
-        return self.user_name
+        return self.email
