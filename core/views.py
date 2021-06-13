@@ -31,6 +31,7 @@ class OwnerPermission(BasePermission):
 
 
 class TipoAtividadeAPIViews(generics.ListCreateAPIView):
+
     # permission_classes = [IsAdminUser]
     filter_backends = (filters.SearchFilter, )
     queryset = TipoAtividade.objects.filter(ativo=True)
