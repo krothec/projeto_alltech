@@ -44,14 +44,14 @@ class DetailTipoAtividade(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserAPIView(generics.ListCreateAPIView):
-    # permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser]
     queryset = NewUser.objects.filter(is_active=True)
     serializer_class = UserSerializers
 
 
 class DetailUser(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsAdminUser]
-    queryset = NewUser.objects.filter(is_active=True)
+    queryset = NewUser.objects.filter(is_active=True)s
     serializer_class = UserSerializers
 
 
