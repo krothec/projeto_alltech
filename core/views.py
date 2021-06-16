@@ -38,7 +38,7 @@ class TipoAtividadeAPIViews(generics.ListCreateAPIView):
 
 
 class DetailTipoAtividade(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser]
     queryset = TipoAtividade.objects.filter(ativo=True)
     serializer_class = TipoAtividadeSerializers
 
