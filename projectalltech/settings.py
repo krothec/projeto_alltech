@@ -143,17 +143,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # MEDIA_ROOT = str(BASE_DIR / 'media')
 # STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
+# Default primary key field types
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -164,7 +161,7 @@ AUTH_USER_MODEL = 'users.NewUser'
 
 YELP_API_KEY = 'lx9g7fqdImA7hPI9fqxAQn_AlHtIQdUC2wZOtGPjuwsllIX7IAVxqUWhgs6-U76fe-IZyFNrG_gj_6sxShOPC0dbvduNUtlXp-t3h9UENG4RkYYZpItDs6pi0cK4YHYx'
 
-GEOIP_PATH = os.path.join(BASE_DIR / 'geoip')
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
