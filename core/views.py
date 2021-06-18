@@ -31,7 +31,7 @@ class OwnerPermission(BasePermission):
 
 
 class TipoAtividadeAPIViews(generics.ListCreateAPIView):
-    permission_classes = [IsAdminUser]
+    #permission_classes = [IsAdminUser]
     filter_backends = (filters.SearchFilter, )
     queryset = TipoAtividade.objects.filter(ativo=True)
     serializer_class = TipoAtividadeSerializers
@@ -44,7 +44,7 @@ class DetailTipoAtividade(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserAPIView(generics.ListCreateAPIView):
-    permission_classes = [IsAdminUser]
+    #permission_classes = [IsAdminUser]
     queryset = NewUser.objects.filter(is_active=True)
     serializer_class = UserSerializers
 
