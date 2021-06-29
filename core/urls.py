@@ -4,12 +4,15 @@ from .views import AtividadeAPIView, TipoAtividadeAPIViews, PublicacaoAPIViews, 
     DetailPublicacao, DetailMidia, RankingAPIViews, DetailRanking, ComentarioAPIViews,\
     DetailComentario,  PremioAPIViews, DetailPremio, InteracaoAPIViews, DetailInteracao, ReferenciaAPIView,\
     DetailReferencia, UserAPIView, DetailUser, \
-    IndexView
+    IndexView, PostagemTesteAPI, DetailPostagem
 
 from .utils import get_client_ip
 
 
 urlpatterns = [
+
+    path('postagem/', PostagemTesteAPI.as_view()),
+    path('postagem/<int:pk>', DetailPostagem.as_view()),
 
     path('tipoAtividade/', TipoAtividadeAPIViews.as_view()),
     path('tipoAtividade/<int:pk>', DetailTipoAtividade.as_view()),

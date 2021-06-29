@@ -1,9 +1,16 @@
 from rest_framework import serializers
 
 from .models import Atividade,  Regional, Referencia, \
-    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao
+    TipoAtividade, Publicacao, Midia, Ranking, Comentario, Premio, Interacao, PostagemTeste
 
 from users.models import NewUser
+
+
+class PostagemSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = PostagemTeste
+        fields = "__all__"
+        depth = 4
 
 
 class TipoAtividadeSerializers(serializers.ModelSerializer):

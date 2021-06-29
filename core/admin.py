@@ -1,11 +1,16 @@
 from django.contrib import admin
 
 from .models import Atividade, TipoAtividade, Publicacao, Midia, Ranking, \
-    Comentario, Premio, Interacao, Regional
+    Comentario, Premio, Interacao, Regional, PostagemTeste
 
 @admin.register(Atividade)
 class AtividadeAdmin(admin.ModelAdmin):
     list_display = ('cd_publicacao', 'cd_tipo_atividade')
+
+@admin.register(PostagemTeste)
+class PostagemAdmin(admin.ModelAdmin):
+    list_display = ('postagem', 'usuario_criacao')
+
 
 # @admin.register(Estado)
 # class EstadoAdmin(admin.ModelAdmin):

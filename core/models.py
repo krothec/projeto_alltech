@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from datetime import datetime
+from django.conf import settings
 
 from django.utils import timezone
 
@@ -18,6 +19,20 @@ class Base(models.Model):
 
     class Meta:
         abstract = True
+
+class PostagemTeste(Base):
+    postagem = models.CharField('Postagem', max_length=100)
+    usuario_criacao = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    # usuario_criacao = models.ForeignKey('users.NewUser',
+    #                                     on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Postagem'
+        verbose_name_plural = 'Postagens'
+
+    def __str__(self):
+        return self.postagem
+
 
 class Regional(Base):
     nome_regional = models.CharField('Nome regional', max_length=100)
