@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,22 +88,34 @@ WSGI_APPLICATION = 'projectalltech.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'alltech',
+#         'USER': 'kroth',
+#         'PASSWORD': 'Cordeiro03',
+#         'HOST': '177.71.161.129',
+#         'PORT': '3931'
+#     }
+# }
+
+
+# DATABASES = {
+#     'default': dj_database_url.config()
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'alltech',
         'USER': 'kroth',
         'PASSWORD': 'Cordeiro03',
-        'HOST': '177.71.161.129',
-        'PORT': '3931'
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
-"""
-DATABASES = {
-    'default': dj_database_url.config()
-}
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -167,9 +180,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # )
 }
 # Permissions:
 # AllowAny
