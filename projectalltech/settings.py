@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'projectalltech.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
+     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'alltech',
         'USER': 'admin',
