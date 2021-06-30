@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'projectalltech.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alltech',
+        'NAME': 'alltech2',
         'USER': 'admin',
         'PASSWORD': 'alltech123',
-        'HOST': 'localhost',
+        'HOST': '18.118.219.6',
         'PORT': '5432'
     }
 }
