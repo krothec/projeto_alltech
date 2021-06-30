@@ -88,22 +88,6 @@ WSGI_APPLICATION = 'projectalltech.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'alltech',
-#         'USER': 'kroth',
-#         'PASSWORD': 'Cordeiro03',
-#         'HOST': '177.71.161.129',
-#         'PORT': '3931'
-#     }
-# }
-
-
-# DATABASES = {
-#     'default': dj_database_url.config()
-# }
-
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
