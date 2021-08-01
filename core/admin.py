@@ -11,15 +11,6 @@ class AtividadeAdmin(admin.ModelAdmin):
 class PostagemAdmin(admin.ModelAdmin):
     list_display = ('postagem', 'usuario_criacao')
 
-
-# @admin.register(Estado)
-# class EstadoAdmin(admin.ModelAdmin):
-#     list_display = ('nome_estado', 'sigla_estado')
-
-# @admin.register(Cidade)
-# class CidadeAdmin(admin.ModelAdmin):
-#     list_display = ('nome_cidade', 'cd_estado')
-
 @admin.register(Regional)
 class RegionalAdmin(admin.ModelAdmin):
     display = ('nome_regional')

@@ -1,6 +1,7 @@
 from rest_framework import generics, filters
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser, BasePermission, IsAuthenticatedOrReadOnly, SAFE_METHODS,\
     IsAuthenticated, DjangoModelPermissions, AllowAny
 import json
@@ -30,13 +31,13 @@ class OwnerPermission(BasePermission):
 
 class PostagemTesteAPI(generics.ListCreateAPIView):
     # permission_classes = [AllowAny]
-    queryset = PostagemTeste.objects.filter(ativo=True)
+    queryset = PostagemTeste.objects.all()
     serializer_class = PostagemSerializers
 
 
 class DetailPostagem(generics.RetrieveUpdateDestroyAPIView, OwnerPermission):
     # permission_classes = [OwnerPermission]
-    queryset = PostagemTeste.objects.filter(ativo=True)
+    queryset = PostagemTeste.objects.all()
     serializer_class = PostagemSerializers
 
 

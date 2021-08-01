@@ -14,7 +14,7 @@ def get_file_path(_instance, filename):
 
 class Base(models.Model):
     dt_criacao = models.DateTimeField('Data início', default=timezone.now)
-    dt_alteracao = models.DateTimeField('Data Alteracao', null=True)
+    dt_alteracao = models.DateTimeField('Data Alteracao', null=True, blank=True)
     ativo = models.BooleanField('Ativo', default=True)
 
     class Meta:
@@ -23,8 +23,6 @@ class Base(models.Model):
 class PostagemTeste(Base):
     postagem = models.CharField('Postagem', max_length=100)
     usuario_criacao = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    # usuario_criacao = models.ForeignKey('users.NewUser',
-    #                                     on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Postagem'
@@ -61,7 +59,7 @@ class TipoAtividade(Base):
 
 
 class Publicacao(Base):
-    localizacao = models.FloatField('Localização', max_length=10000)
+    localizacao = models.FloatField('Localização', max_length=10000, null=True, blank=True)
     data_atividade = models.DateField('Data Atividade', auto_now_add=True)
     descricao = models.TextField('Descrição', max_length=500)
     usuario_criacao = models.ForeignKey('users.NewUser', related_name='publicacao',

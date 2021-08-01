@@ -5,6 +5,8 @@ from .models import Atividade,  Regional, Referencia, \
 
 from users.models import NewUser
 
+# regras de negócio
+
 
 class PostagemSerializers(serializers.ModelSerializer):
     class Meta:
